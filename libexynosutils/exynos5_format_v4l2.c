@@ -67,6 +67,14 @@ int HAL_PIXEL_FORMAT_2_V4L2_PIX(
         v4l2_pixel_format = V4L2_PIX_FMT_BGR32;
         break;
 
+    case HAL_PIXEL_FORMAT_RGBA_5551:
+        v4l2_pixel_format = V4L2_PIX_FMT_RGB555X;
+        break;
+
+    case HAL_PIXEL_FORMAT_RGBA_4444:
+        v4l2_pixel_format = V4L2_PIX_FMT_RGB444;
+        break;
+
     case HAL_PIXEL_FORMAT_EXYNOS_YV12:
         v4l2_pixel_format = V4L2_PIX_FMT_YVU420M;
         break;
@@ -115,20 +123,12 @@ int HAL_PIXEL_FORMAT_2_V4L2_PIX(
         break;
 
    case HAL_PIXEL_FORMAT_YCbCr_420_SP_TILED:
-#ifdef ENABLE_FIMC
-	v4l2_pixel_format = V4L2_PIX_FMT_NV12MT;
-#else
-	v4l2_pixel_format = V4L2_PIX_FMT_NV12MT_16X16;
-#endif
-	break;
+        v4l2_pixel_format = V4L2_PIX_FMT_NV12MT_16X16;
+        break;
 
     case HAL_PIXEL_FORMAT_CUSTOM_YCbCr_420_SP_TILED:
-#ifdef ENABLE_FIMC
-	v4l2_pixel_format = V4L2_PIX_FMT_NV12MT;
-#else
-	v4l2_pixel_format = V4L2_PIX_FMT_NV12MT_16X16;
-#endif
-	break;
+        v4l2_pixel_format = V4L2_PIX_FMT_NV12MT_16X16;
+        break;
 
    case HAL_PIXEL_FORMAT_CUSTOM_YCrCb_422_I:
         v4l2_pixel_format = V4L2_PIX_FMT_YVYU;
@@ -167,6 +167,14 @@ int V4L2_PIX_2_HAL_PIXEL_FORMAT(
 
     case V4L2_PIX_FMT_BGR32:
         hal_pixel_format = HAL_PIXEL_FORMAT_BGRA_8888;
+        break;
+
+    case V4L2_PIX_FMT_RGB555X:
+        hal_pixel_format = HAL_PIXEL_FORMAT_RGBA_5551;
+        break;
+
+    case V4L2_PIX_FMT_RGB444:
+        hal_pixel_format = HAL_PIXEL_FORMAT_RGBA_4444;
         break;
 
     case V4L2_PIX_FMT_YUV420:
@@ -213,8 +221,8 @@ int V4L2_PIX_2_HAL_PIXEL_FORMAT(
     case V4L2_PIX_FMT_NV21:
         hal_pixel_format = HAL_PIXEL_FORMAT_CUSTOM_YCrCb_420_SP;
         break;
-    case V4L2_PIX_FMT_NV12MT:
     case V4L2_PIX_FMT_NV12MT_16X16:
+
         hal_pixel_format = HAL_PIXEL_FORMAT_YCbCr_420_SP_TILED;
         break;
 
@@ -273,6 +281,8 @@ unsigned int FRAME_SIZE(
     switch (hal_pixel_format) {
     // 16bpp
     case HAL_PIXEL_FORMAT_RGB_565:
+    case HAL_PIXEL_FORMAT_RGBA_5551:
+    case HAL_PIXEL_FORMAT_RGBA_4444:
         frame_size = GET_16BPP_FRAME_SIZE(width, height);
         break;
 
@@ -392,7 +402,6 @@ int V4L2_PIX_2_YUV_INFO(unsigned int v4l2_pixel_format, unsigned int * bpp, unsi
     case V4L2_PIX_FMT_NV21X:
     case V4L2_PIX_FMT_NV12M:
     case V4L2_PIX_FMT_NV21M:
-    case V4L2_PIX_FMT_NV12MT:
     case V4L2_PIX_FMT_NV12MT_16X16:
         *bpp    = 12;
         *planes = 2;
@@ -430,7 +439,7 @@ int V4L2_PIX_2_YUV_INFO(unsigned int v4l2_pixel_format, unsigned int * bpp, unsi
     return 0;
 }
 
-int get_yuv_bpp(unsigned int v4l2_pixel_format)
+unsigned int get_yuv_bpp(unsigned int v4l2_pixel_format)
 {
     unsigned int bpp, planes;
 
@@ -440,7 +449,7 @@ int get_yuv_bpp(unsigned int v4l2_pixel_format)
     return bpp;
 }
 
-int get_yuv_planes(unsigned int v4l2_pixel_format)
+unsigned int get_yuv_planes(unsigned int v4l2_pixel_format)
 {
     unsigned int bpp, planes;
 

@@ -30,15 +30,10 @@ LOCAL_SRC_FILES := ExynosMutex.cpp \
 LOCAL_MODULE_TAGS := eng
 LOCAL_MODULE := libexynosutils
 
-LOCAL_SRC_FILES += exynos_format_v4l2.c
+ifeq ($(TARGET_BOARD_PLATFORM), exynos5)
+LOCAL_SRC_FILES += exynos5_format_v4l2.c
 LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH)/../include
-
-ifeq ($(TARGET_BOARD_PLATFORM),exynos3)
-LOCAL_CFLAGS += -DENABLE_FIMC
-endif
-ifeq ($(TARGET_BOARD_PLATFORM),exynos4)
-LOCAL_CFLAGS += -DENABLE_FIMC
 endif
 
 include $(BUILD_SHARED_LIBRARY)

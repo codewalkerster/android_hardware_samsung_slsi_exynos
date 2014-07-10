@@ -159,11 +159,6 @@ int stretchFimgApi(struct fimg2d_blit *cmd);
 #ifdef __cplusplus
 extern "C"
 #endif
-int stretchFimgApi_fast(struct fimg2d_blit *cmd, unsigned long temp_addr, int temp_size);
-
-#ifdef __cplusplus
-extern "C"
-#endif
 int compromiseFimgApi(struct compromise_param *param);
 
 #ifdef __cplusplus

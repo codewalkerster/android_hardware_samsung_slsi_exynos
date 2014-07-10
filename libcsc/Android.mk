@@ -14,7 +14,6 @@ LOCAL_C_INCLUDES := \
 	hardware/samsung_slsi/openmax/include/khronos \
 	hardware/samsung_slsi/openmax/include/$(OMX_NAME) \
 	hardware/samsung_slsi/$(TARGET_BOARD_PLATFORM)/include \
-	frameworks/native/include/ \
 	$(LOCAL_PATH)/../include
 
 LOCAL_CFLAGS := \
@@ -59,10 +58,6 @@ LOCAL_CFLAGS += -DUSE_SAMSUNG_COLORFORMAT
 LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH)/../include
 
-ifeq ($(TARGET_BOARD_PLATFORM),exynos3)
-LOCAL_CFLAGS += -DENABLE_FIMC
-LOCAL_SHARED_LIBRARIES += libexynosfimc
-endif
 ifeq ($(TARGET_BOARD_PLATFORM),exynos4)
 LOCAL_CFLAGS += -DENABLE_FIMC
 LOCAL_SHARED_LIBRARIES += libexynosfimc
@@ -70,10 +65,6 @@ endif
 ifeq ($(TARGET_BOARD_PLATFORM),exynos5)
 LOCAL_CFLAGS += -DENABLE_GSCALER
 LOCAL_SHARED_LIBRARIES += libexynosgscaler
-ifeq ($(BOARD_USES_SCALER), true)
-LOCAL_CFLAGS += -DENABLE_SCALER
-LOCAL_SHARED_LIBRARIES += libexynosscaler
-endif
 endif
 
 LOCAL_CFLAGS += -DUSE_ION
