@@ -135,7 +135,7 @@ const size_t NUM_HDMI_BUFFERS = 3;
 #define HWC_PAGE_MISS_TH  5
 
 #define S3D_ERROR -1
-#define HDMI_PRESET_DEFAULT V4L2_DV_1080P60
+#define HDMI_PRESET_DEFAULT V4L2_DV_720P60
 #define HDMI_PRESET_ERROR -1
 
 #define HWC_FIMD_BW_TH  1   /* valid range 1 to 5 */
