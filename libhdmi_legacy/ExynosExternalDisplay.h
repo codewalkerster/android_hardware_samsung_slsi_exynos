@@ -16,7 +16,7 @@ const struct preset_index_mapping preset_index_mappings[SUPPORTED_DV_TIMINGS_NUM
 	{V4L2_DV_480P59_94, 0},
 	{V4L2_DV_576P50, 1},
 	{V4L2_DV_720P50, 2},
-	{V4L2_DV_800X480P54, 3},
+	{V4L2_DV_800X480P60, 3},
 	{V4L2_DV_720P60, 4},
 	{V4L2_DV_1080I50, 5},
 	{V4L2_DV_1080I60, 6},
