@@ -145,7 +145,7 @@ bool ExynosExternalDisplay::isPresetSupported(unsigned int preset)
 {
 #if defined(USE_DV_TIMINGS)
     struct v4l2_enum_dv_timings enum_timings;
-    int dv_timings_index = getDVTimingsIndex(preset);
+    int dv_timings_index = preset;//getDVTimingsIndex(preset);
 #else
     struct v4l2_dv_enum_preset enum_preset;
 #endif
@@ -229,10 +229,20 @@ int ExynosExternalDisplay::getConfig()
         ALOGE("%s: g_dv_timings error, %d", __func__, errno);
         return -1;
     }
+    /*
     for (int i = 0; i < SUPPORTED_DV_TIMINGS_NUM; i++) {
         dv_timings_index = preset_index_mappings[i].dv_timings_index;
+        ALOGE("dv_timings_index = %d", dv_timings_index);
         if (is_same_dv_timings(&timings, &dv_timings[dv_timings_index])) {
             preset.preset = preset_index_mappings[i].preset;
+            ALOGE("i = %d, preset = %d", i, preset.preset);
+            break;
+        }
+    }
+    */
+    for (int i = 0; i < SUPPORTED_DV_TIMINGS_NUM; i++) {
+        if (is_same_dv_timings(&timings, &dv_timings[i])) {
+            preset.preset = i;
             break;
         }
     }
