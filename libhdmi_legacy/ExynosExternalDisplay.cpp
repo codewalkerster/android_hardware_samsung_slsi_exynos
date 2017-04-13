@@ -153,7 +153,7 @@ bool ExynosExternalDisplay::isPresetSupported(unsigned int preset)
     int index = 0;
     int ret;
 
-    if (preset <= V4L2_DV_INVALID || preset > V4L2_DV_1080P30_TB) {
+    if (preset < V4L2_DV_INVALID || preset > V4L2_DV_1080P30_TB) {
         ALOGE("%s: invalid preset, %d", __func__, preset);
         return -1;
     }
