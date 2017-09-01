@@ -7,7 +7,7 @@
 #define VIDEO_LAYER_INDEX       2
 #define NUM_VIRT_OVER_HDMI 5
 
-#define SUPPORTED_DV_TIMINGS_NUM 32
+#define SUPPORTED_DV_TIMINGS_NUM 33
 
 class ExynosExternalDisplay : public ExynosDisplay {
     public:
