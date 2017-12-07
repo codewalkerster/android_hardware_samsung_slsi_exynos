@@ -2,6 +2,7 @@
 #include "../../exynos/kernel-3.10-headers/v4l2-dv-timings.h"
 
 const struct v4l2_dv_timings dv_timings[] = {
+     V4L2_DV_BT_CEA_480X320P60,
      V4L2_DV_BT_DMT_640X480P60,
      V4L2_DV_BT_CEA_720X480P59_94,
      V4L2_DV_BT_CEA_720X576P50,
