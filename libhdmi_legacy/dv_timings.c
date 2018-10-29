@@ -35,5 +35,6 @@ const struct v4l2_dv_timings dv_timings[] = {
      V4L2_DV_BT_CEA_1920X1080P50,
      V4L2_DV_BT_CEA_1920X1080P60,
      V4L2_DV_BT_DMT_1920X1200P60_RB,
+     V4L2_DV_BT_DMT_1200X1920P60,
 };
 
